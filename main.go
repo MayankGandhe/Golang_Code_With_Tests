@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -80,8 +82,27 @@ func IsLeapYear(year int) bool {
 	}
 	return false
 }
+func ValidateDate(date Date) bool {
+	if InBetween(date.year, 1900, 2999) {
+		if InBetween(date.month, 1, 12) {
+			if InBetween(date.day, 1, NumberOfDaysInMonth(date.month, date.year)) {
+				return true
+			}
+		}
+	}
+	return false
+}
+func CalculateNumberOfDaysFromStart(date Date) int {
+	NumberOfdaysFromYear := (date.year - 1) * 365
+	var NumberOfdaysFromMonth int
+	for month := 1; month < date.month; month++ {
+		NumberOfdaysFromMonth += NumberOfDaysInMonth(month, date.year)
+	}
+	return NumberOfdaysFromMonth + NumberOfdaysFromYear + date.day + CalculateNumberOfLeapYears(date.year-1)
+}
 func CalculateDifference(date1, date2 Date) int {
-	return 1
+	return int(math.Abs(float64(CalculateNumberOfDaysFromStart(date1)) - float64(CalculateNumberOfDaysFromStart(date2))))
+
 }
 func main() {
 	fmt.Println("This Program will help you find the number of days between two dates")
@@ -89,10 +110,18 @@ func main() {
 	var dateA string
 	fmt.Scanln(&dateA)
 	date1 := ConvertInputToDate(dateA)
+	if !ValidateDate(date1) {
+		fmt.Println("Entered Date Not Valid")
+		os.Exit(1)
+	}
 	fmt.Println("Enter Second Date in DD/MM/YYYY format")
 	var dateB string
 	fmt.Scanln(&dateB)
 	date2 := ConvertInputToDate(dateA)
-	CalculateDifference(date1, date2)
+	if !ValidateDate(date2) {
+		fmt.Println("Entered Date Not Valid")
+		os.Exit(1)
+	}
+	fmt.Println(CalculateDifference(date1, date2))
 
 }

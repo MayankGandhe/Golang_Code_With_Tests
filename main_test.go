@@ -42,3 +42,31 @@ func TestNumberOfDaysInMonth(t *testing.T) {
 		t.Error("Not able to calculate correct number of days in a year")
 	}
 }
+
+func TestDateValidation(t *testing.T) {
+	if ValidateDate(Date{12, 12, 12}) {
+		t.Error("Date validate Function Not working")
+	}
+	if !ValidateDate(Date{12, 12, 2012}) {
+		t.Error("Date validate Function Not working")
+	}
+	if !ValidateDate(Date{29, 2, 2012}) {
+		t.Error("Date validate Function Not working")
+	}
+	if !ValidateDate(Date{29, 2, 2000}) {
+		t.Error("Date validate Function Not working")
+	}
+	if ValidateDate(Date{29, 2, 2001}) {
+		t.Error("Date validate Function Not working")
+	}
+
+}
+func TestFunctionToGetDaysFromStart(t *testing.T) {
+	if CalculateNumberOfDaysFromStart(Date{1, 1, 1}) != 1 {
+		t.Error("Function Not Working")
+	}
+	numberOfDays := CalculateNumberOfDaysFromStart(Date{1, 1, 2001})
+	if numberOfDays != 1 {
+		t.Error("Function Not Working {}", numberOfDays)
+	}
+}
