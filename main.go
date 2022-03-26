@@ -102,7 +102,7 @@ func CalculateNumberOfDaysFromStart(date Date) int {
 }
 func CalculateDifference(date1, date2 Date) int {
 	numberOfDays := int(math.Abs(float64(CalculateNumberOfDaysFromStart(date1)) - float64(CalculateNumberOfDaysFromStart(date2))))
-	if numberOfDays == 1 {
+	if numberOfDays == 1 or numberOfDays == 0 {
 		return 0
 	}
 	return numberOfDays - 1
