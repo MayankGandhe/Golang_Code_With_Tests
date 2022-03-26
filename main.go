@@ -101,7 +101,7 @@ func CalculateNumberOfDaysFromStart(date Date) int {
 	return NumberOfdaysFromMonth + NumberOfdaysFromYear + date.day + CalculateNumberOfLeapYears(date.year-1)
 }
 func CalculateDifference(date1, date2 Date) int {
-	return int(math.Abs(float64(CalculateNumberOfDaysFromStart(date1)) - float64(CalculateNumberOfDaysFromStart(date2))))
+	return int(math.Abs(float64(CalculateNumberOfDaysFromStart(date1)) - float64(CalculateNumberOfDaysFromStart(date2)-1)))
 
 }
 func main() {
