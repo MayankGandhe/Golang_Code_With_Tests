@@ -46,7 +46,31 @@ func ConvertInputToDate(givenDate string) Date {
 	}
 	return Date{day: day, month: month, year: year}
 }
-
+func NumberOfDaysInMonth(month, year int) int {
+	switch month {
+	case 1,
+		3,
+		5,
+		7,
+		8,
+		10,
+		12:
+		return 31
+	case 4,
+		6,
+		9,
+		11:
+		return 30
+	}
+	if month == 2 {
+		if IsLeapYear(year) {
+			return 29
+		} else {
+			return 28
+		}
+	}
+	return 0
+}
 func IsLeapYear(year int) bool {
 	if year%400 == 0 {
 		return true

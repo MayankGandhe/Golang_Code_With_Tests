@@ -28,3 +28,17 @@ func TestIsLeapYear(t *testing.T) {
 		t.Error("Leap year validator not working")
 	}
 }
+func TestNumberOfDaysInMonth(t *testing.T) {
+	if NumberOfDaysInMonth(1, 2000) != 31 {
+		t.Error("Not able to calculate correct number of days in a year")
+	}
+	if NumberOfDaysInMonth(2, 2000) != 29 {
+		t.Error("Not able to calculate correct number of days in a year")
+	}
+	if NumberOfDaysInMonth(2, 1900) != 28 {
+		t.Error("Not able to calculate correct number of days in a year")
+	}
+	if NumberOfDaysInMonth(4, 1900) != 30 {
+		t.Error("Not able to calculate correct number of days in a year")
+	}
+}
