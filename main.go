@@ -114,7 +114,7 @@ func main() {
 		fmt.Println("This Program will help you find the number of days between two dates")
 		fmt.Println("Enter both dates in DD/MM/YYYY format and as an argument to this binary")
 		fmt.Println("For example: ./calculateDays 22/12/1999 4/4/2004")
-		fmt.Println("./main 22/12/1999 4/4/2004")
+		fmt.Println("./calculateDays 22/12/1999 4/4/2004")
 		fmt.Println("#########IMPORTANT#######")
 		fmt.Println("This programm will only Support dates from 1/1/1900 to 31/12/2999")
 
