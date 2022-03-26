@@ -101,6 +101,9 @@ func CalculateNumberOfDaysFromStart(date Date) int {
 	return NumberOfdaysFromMonth + NumberOfdaysFromYear + date.day + CalculateNumberOfLeapYears(date.year-1)
 }
 func CalculateDifference(date1, date2 Date) int {
+	numberOfDaysForDate1 := float64(CalculateNumberOfDaysFromStart(date1))
+	numberOfDaysForDate2 := float64(CalculateNumberOfDaysFromStart(date2))
+	fmt.Println("Numer of Days for date 1 {} \n Number of Days for Date 2 {}", numberOfDaysForDate1, numberOfDaysForDate2)
 	return int(math.Abs(float64(CalculateNumberOfDaysFromStart(date1)) - float64(CalculateNumberOfDaysFromStart(date2))))
 
 }
@@ -117,7 +120,7 @@ func main() {
 	fmt.Println("Enter Second Date in DD/MM/YYYY format")
 	var dateB string
 	fmt.Scanln(&dateB)
-	date2 := ConvertInputToDate(dateA)
+	date2 := ConvertInputToDate(dateB)
 	if !ValidateDate(date2) {
 		fmt.Println("Entered Date Not Valid")
 		os.Exit(1)

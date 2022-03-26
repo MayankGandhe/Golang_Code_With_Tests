@@ -66,7 +66,15 @@ func TestFunctionToGetDaysFromStart(t *testing.T) {
 		t.Error("Function Not Working")
 	}
 	numberOfDays := CalculateNumberOfDaysFromStart(Date{1, 1, 2001})
-	if numberOfDays != 1 {
+	if numberOfDays != 730486 {
 		t.Error("Function Not Working {}", numberOfDays)
+	}
+}
+func TestToCalculateNumberOfLeapYears(t *testing.T) {
+	if CalculateNumberOfLeapYears(2000) != 485 {
+		t.Error("Number of Leap Years are getting calulated wrong")
+	}
+	if CalculateNumberOfLeapYears(1981) != 480 {
+		t.Error("Number of Leap Years are getting calulated wrong")
 	}
 }
