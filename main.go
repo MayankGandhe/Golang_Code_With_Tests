@@ -101,28 +101,33 @@ func CalculateNumberOfDaysFromStart(date Date) int {
 	return NumberOfdaysFromMonth + NumberOfdaysFromYear + date.day + CalculateNumberOfLeapYears(date.year-1)
 }
 func CalculateDifference(date1, date2 Date) int {
-	numberOfDaysForDate1 := float64(CalculateNumberOfDaysFromStart(date1))
-	numberOfDaysForDate2 := float64(CalculateNumberOfDaysFromStart(date2))
-	fmt.Println("Numer of Days for date 1 {} \n Number of Days for Date 2 {}", numberOfDaysForDate1, numberOfDaysForDate2)
 	return int(math.Abs(float64(CalculateNumberOfDaysFromStart(date1)) - float64(CalculateNumberOfDaysFromStart(date2))))
 
 }
 func main() {
-	fmt.Println("This Program will help you find the number of days between two dates")
-	fmt.Println("Enter First Date in DD/MM/YYYY format")
-	var dateA string
-	fmt.Scanln(&dateA)
+	arguments := os.Args[1:]
+	if arguments[0] == "help" {
+
+		fmt.Println("This Program will help you find the number of days between two dates")
+		fmt.Println("Enter both dates in DD/MM/YYYY format and as an argument to this binary")
+		fmt.Println("For example: ./calculateDays 22/12/1999 4/4/2004")
+		fmt.Println("./main 22/12/1999 4/4/2004")
+		fmt.Println("#########IMPORTANT#######")
+		fmt.Println("This programm will only Support dates from 1/1/1900 to 31/12/2999")
+
+		os.Exit(0)
+	}
+	dateA := arguments[0]
 	date1 := ConvertInputToDate(dateA)
 	if !ValidateDate(date1) {
-		fmt.Println("Entered Date Not Valid")
+		fmt.Println("First date entered is Not Valid")
 		os.Exit(1)
 	}
-	fmt.Println("Enter Second Date in DD/MM/YYYY format")
-	var dateB string
-	fmt.Scanln(&dateB)
+	dateB := arguments[1]
+
 	date2 := ConvertInputToDate(dateB)
 	if !ValidateDate(date2) {
-		fmt.Println("Entered Date Not Valid")
+		fmt.Println("Second date entered is Not Valid")
 		os.Exit(1)
 	}
 	fmt.Println(CalculateDifference(date1, date2))
